@@ -1,0 +1,24 @@
+diff -aurN REV-plugins-0.2.1.orig/ladspaplugin.h REV-plugins-0.2.1/ladspaplugin.h
+--- REV-plugins-0.2.1.orig/ladspaplugin.h	2003-12-01 21:18:18.000000000 +0100
++++ REV-plugins-0.2.1/ladspaplugin.h	2004-01-08 19:22:34.413123984 +0100
+@@ -21,7 +21,7 @@
+ #define __LADSPAPLUGIN_H
+ 
+ 
+-#include "ladspa.h" // use local version
++#include <ladspa.h>
+ 
+ 
+ 
+diff -aurN REV-plugins-0.2.1.orig/Makefile REV-plugins-0.2.1/Makefile
+--- REV-plugins-0.2.1.orig/Makefile	2003-12-01 21:18:18.000000000 +0100
++++ REV-plugins-0.2.1/Makefile	2004-01-08 19:22:11.786563744 +0100
+@@ -13,7 +13,7 @@
+ 
+ 
+ install:
+-	cp  *.so /usr/lib/ladspa
++	cp  *.so $(DESTDIR)/usr/lib/ladspa
+ 
+ 
+ DIR := $(shell basename `pwd`)
