@@ -1,6 +1,25 @@
-diff -aurN REV-plugins-0.2.1.orig/ladspaplugin.h REV-plugins-0.2.1/ladspaplugin.h
+diff -ur REV-plugins-0.2.1.orig/Makefile REV-plugins-0.2.1/Makefile
+--- REV-plugins-0.2.1.orig/Makefile	2003-12-01 21:18:18.000000000 +0100
++++ REV-plugins-0.2.1/Makefile	2004-10-05 01:58:21.267530256 +0200
+@@ -1,5 +1,6 @@
+ 
+ CPPFLAGS += -I. -fPIC -D_REENTRANT -Wall -O2
++INSTALL_PLUGINS_DIR=/usr/lib/ladspa
+ 
+ 
+ all:	g2reverb.so
+@@ -13,7 +14,7 @@
+ 
+ 
+ install:
+-	cp  *.so /usr/lib/ladspa
++	cp  *.so $(DESTDIR)$(INSTALL_PLUGINS_DIR)
+ 
+ 
+ DIR := $(shell basename `pwd`)
+diff -ur REV-plugins-0.2.1.orig/ladspaplugin.h REV-plugins-0.2.1/ladspaplugin.h
 --- REV-plugins-0.2.1.orig/ladspaplugin.h	2003-12-01 21:18:18.000000000 +0100
-+++ REV-plugins-0.2.1/ladspaplugin.h	2004-01-08 19:22:34.413123984 +0100
++++ REV-plugins-0.2.1/ladspaplugin.h	2004-10-05 01:57:39.839828224 +0200
 @@ -21,7 +21,7 @@
  #define __LADSPAPLUGIN_H
  
@@ -10,15 +29,3 @@ diff -aurN REV-plugins-0.2.1.orig/ladspaplugin.h REV-plugins-0.2.1/ladspaplugin.
  
  
  
-diff -aurN REV-plugins-0.2.1.orig/Makefile REV-plugins-0.2.1/Makefile
---- REV-plugins-0.2.1.orig/Makefile	2003-12-01 21:18:18.000000000 +0100
-+++ REV-plugins-0.2.1/Makefile	2004-01-08 19:22:11.786563744 +0100
-@@ -13,7 +13,7 @@
- 
- 
- install:
--	cp  *.so /usr/lib/ladspa
-+	cp  *.so $(DESTDIR)/usr/lib/ladspa
- 
- 
- DIR := $(shell basename `pwd`)
