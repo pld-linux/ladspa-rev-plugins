@@ -1,6 +1,6 @@
 %define		_name REV-plugins
 Summary:	Stereo reverb LADSPA plugin
-Summary(pl):	Wtyczka LADSPA - stereofoniczny pog³os
+Summary(pl.UTF-8):   Wtyczka LADSPA - stereofoniczny pogÅ‚os
 Name:		ladspa-rev-plugins
 Version:	0.2.1
 Release:	2
@@ -19,9 +19,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 This LADSPA plugin contains a digital implementation of the stereo
 reverb effect.
 
-%description -l pl
-Ta wtyczka LADSPA zawiera cyfrow± implementacjê stereofonicznego
-efektu pog³osu.
+%description -l pl.UTF-8
+Ta wtyczka LADSPA zawiera cyfrowÄ… implementacjÄ™ stereofonicznego
+efektu pogÅ‚osu.
 
 %prep
 %setup -q -n %{_name}-%{version}
