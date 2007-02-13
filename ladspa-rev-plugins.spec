@@ -1,6 +1,6 @@
 %define		_name REV-plugins
 Summary:	Stereo reverb LADSPA plugin
-Summary(pl.UTF-8):   Wtyczka LADSPA - stereofoniczny pogłos
+Summary(pl.UTF-8):	Wtyczka LADSPA - stereofoniczny pogłos
 Name:		ladspa-rev-plugins
 Version:	0.2.1
 Release:	2
