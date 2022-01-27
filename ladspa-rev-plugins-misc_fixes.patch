@@ -1,31 +1,39 @@
-diff -ur REV-plugins-0.2.1.orig/Makefile REV-plugins-0.2.1/Makefile
---- REV-plugins-0.2.1.orig/Makefile	2003-12-01 21:18:18.000000000 +0100
-+++ REV-plugins-0.2.1/Makefile	2004-10-05 01:58:21.267530256 +0200
-@@ -1,5 +1,6 @@
- 
- CPPFLAGS += -I. -fPIC -D_REENTRANT -Wall -O2
-+INSTALL_PLUGINS_DIR=/usr/lib/ladspa
+--- REV-plugins-0.7.1/Makefile.orig	2022-01-23 19:49:10.480719586 +0100
++++ REV-plugins-0.7.1/Makefile	2022-01-23 20:10:49.480348969 +0100
+@@ -19,21 +19,22 @@
+ # -----------------------------------------------------------------------
  
  
- all:	g2reverb.so
-@@ -13,7 +14,7 @@
++CXX = g++
+ CPPFLAGS += -I. -fPIC -D_REENTRANT
+-CXXFLAGS += -Wall -O2
++CXXFLAGS += -Wall
+ 
+ all:	zita-reverbs.so
+ 
+ REVERBS_O = reverbs.o reverbs_if.o zreverb.o pareq.o
+ zita-reverbs.so:	$(REVERBS_O)	
+-	g++ -shared  -o $@  $(REVERBS_O)
++	$(CXX) $(LDFLAGS) $(CXXFLAGS) -shared  -o $@  $(REVERBS_O)
+ 
+ reverbs.o:	ladspaplugin.h reverbs.h zreverb.h pareq.h
+ reverbs_if.o:	ladspaplugin.h reverbs.h zreverb.h pareq.h
  
  
- install:
+ install:	zita-reverbs.so
 -	cp  *.so /usr/lib/ladspa
-+	cp  *.so $(DESTDIR)$(INSTALL_PLUGINS_DIR)
++	cp -p *.so $(DESTDIR)$(INSTALL_PLUGINS_DIR)
  
- 
- DIR := $(shell basename `pwd`)
-diff -ur REV-plugins-0.2.1.orig/ladspaplugin.h REV-plugins-0.2.1/ladspaplugin.h
---- REV-plugins-0.2.1.orig/ladspaplugin.h	2003-12-01 21:18:18.000000000 +0100
-+++ REV-plugins-0.2.1/ladspaplugin.h	2004-10-05 01:57:39.839828224 +0200
-@@ -21,7 +21,7 @@
+ clean:
+ 	rm -rf *~ *.o *.so
+--- REV-plugins-0.7.1/ladspaplugin.h.orig	2022-01-23 19:49:10.480719586 +0100
++++ REV-plugins-0.7.1/ladspaplugin.h	2022-01-23 20:11:23.316832328 +0100
+@@ -23,7 +23,7 @@
  #define __LADSPAPLUGIN_H
  
  
--#include "ladspa.h" // use local version
+-#include "ladspa.h"
 +#include <ladspa.h>
  
  
- 
+ class LadspaPlugin

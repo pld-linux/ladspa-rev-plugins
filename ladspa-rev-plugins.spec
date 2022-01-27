@@ -1,16 +1,14 @@
-%define		_name REV-plugins
 Summary:	Stereo reverb LADSPA plugin
 Summary(pl.UTF-8):	Wtyczka LADSPA - stereofoniczny pogłos
 Name:		ladspa-rev-plugins
-Version:	0.3.1
+Version:	0.7.1
 Release:	1
 License:	GPL v2+
 Group:		Applications/Sound
-#Source0Download: http://users.skynet.be/solaris/linuxaudio/getit.html
-Source0:	http://users.skynet.be/solaris/linuxaudio/downloads/%{_name}-%{version}.tar.bz2
-# Source0-md5:	bca920c2cbf5e33989e7cafab6fbaee4
+Source0:	http://kokkinizita.linuxaudio.org/linuxaudio/downloads/REV-plugins-%{version}.tar.bz2
+# Source0-md5:	9f0be0d26592f67ba5fe16102c6bc332
 Patch0:		%{name}-misc_fixes.patch
-URL:		http://users.skynet.be/solaris/linuxaudio/
+URL:		http://kokkinizita.linuxaudio.org/linuxaudio/ladspa/index.html
 BuildRequires:	ladspa-devel
 BuildRequires:	libstdc++-devel
 Requires:	ladspa-common
@@ -25,13 +23,15 @@ Ta wtyczka LADSPA zawiera cyfrową implementację stereofonicznego
 efektu pogłosu.
 
 %prep
-%setup -q -n %{_name}-%{version}
+%setup -q -n REV-plugins-%{version}
 %patch0 -p1
 
 %build
+CPPFLAGS="%{rpmcppflags}" \
+CXXFLAGS="%{rpmcxxflags}" \
+LDFLAGS="%{rpmldflags}" \
 %{__make} \
-	CXX="%{__cxx}" \
-	CPPFLAGS="-I. -fPIC -D_REENTRANT -Wall %{rpmcflags}"
+	CXX="%{__cxx}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -47,4 +47,4 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS README
-%attr(755,root,root) %{_libdir}/ladspa/g2reverb.so
+%attr(755,root,root) %{_libdir}/ladspa/zita-reverbs.so
