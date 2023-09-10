@@ -1,12 +1,12 @@
 Summary:	Stereo reverb LADSPA plugin
 Summary(pl.UTF-8):	Wtyczka LADSPA - stereofoniczny pogłos
 Name:		ladspa-rev-plugins
-Version:	0.7.1
+Version:	0.8.1
 Release:	1
 License:	GPL v2+
 Group:		Applications/Sound
 Source0:	http://kokkinizita.linuxaudio.org/linuxaudio/downloads/REV-plugins-%{version}.tar.bz2
-# Source0-md5:	9f0be0d26592f67ba5fe16102c6bc332
+# Source0-md5:	6e3063d0b30d1038a6bcd987114d9c71
 Patch0:		%{name}-misc_fixes.patch
 URL:		http://kokkinizita.linuxaudio.org/linuxaudio/ladspa/index.html
 BuildRequires:	ladspa-devel
@@ -30,14 +30,14 @@ efektu pogłosu.
 CPPFLAGS="%{rpmcppflags}" \
 CXXFLAGS="%{rpmcxxflags}" \
 LDFLAGS="%{rpmldflags}" \
-%{__make} \
+%{__make} -C source \
 	CXX="%{__cxx}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_libdir}/ladspa
 
-%{__make} install \
+%{__make} -C source install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	INSTALL_PLUGINS_DIR=%{_libdir}/ladspa
 

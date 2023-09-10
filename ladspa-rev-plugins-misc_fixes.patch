@@ -1,5 +1,5 @@
---- REV-plugins-0.7.1/Makefile.orig	2022-01-23 19:49:10.480719586 +0100
-+++ REV-plugins-0.7.1/Makefile	2022-01-23 20:10:49.480348969 +0100
+--- REV-plugins-0.8.1/source/Makefile.orig	2023-09-10 10:54:35.939012969 +0200
++++ REV-plugins-0.8.1/source/Makefile	2023-09-10 10:55:30.862048759 +0200
 @@ -19,21 +19,22 @@
  # -----------------------------------------------------------------------
  
@@ -11,13 +11,13 @@
  
  all:	zita-reverbs.so
  
- REVERBS_O = reverbs.o reverbs_if.o zreverb.o pareq.o
+ REVERBS_O = revplugins.o reverbs.o zreverb.o pareq.o
  zita-reverbs.so:	$(REVERBS_O)	
--	g++ -shared  -o $@  $(REVERBS_O)
+-	$(CXX) -shared  -o $@  $(REVERBS_O)
 +	$(CXX) $(LDFLAGS) $(CXXFLAGS) -shared  -o $@  $(REVERBS_O)
  
  reverbs.o:	ladspaplugin.h reverbs.h zreverb.h pareq.h
- reverbs_if.o:	ladspaplugin.h reverbs.h zreverb.h pareq.h
+ revplugins.o:	ladspaplugin.h reverbs.h zreverb.h pareq.h
  
  
  install:	zita-reverbs.so
@@ -26,13 +26,13 @@
  
  clean:
  	rm -rf *~ *.o *.so
---- REV-plugins-0.7.1/ladspaplugin.h.orig	2022-01-23 19:49:10.480719586 +0100
-+++ REV-plugins-0.7.1/ladspaplugin.h	2022-01-23 20:11:23.316832328 +0100
-@@ -23,7 +23,7 @@
+--- REV-plugins-0.8.1/source/ladspaplugin.h.orig	2023-09-10 10:54:35.942346284 +0200
++++ REV-plugins-0.8.1/source/ladspaplugin.h	2023-09-10 10:56:00.868552866 +0200
+@@ -22,7 +22,7 @@
  #define __LADSPAPLUGIN_H
  
  
--#include "ladspa.h"
+-#include "ladspa.h"  // use local version
 +#include <ladspa.h>
  
  
